@@ -2,7 +2,7 @@
   "name": "dev-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://rambo37.github.io/rambo37.github.io",
+  "homepage": "https://rambo37.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
