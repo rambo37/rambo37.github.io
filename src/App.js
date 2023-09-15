@@ -120,9 +120,6 @@ function App() {
       window.innerHeight - navHeight
     }px`;
 
-    document.getElementById("contact-section-heading").style.marginTop =
-      -navHeight + "px";
-
     // the margin ensures we only consider intersections that occur just underneath the nav bar
     const options = {
       threshold: [0],

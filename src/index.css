@@ -37,6 +37,7 @@ nav ul li a:hover {
 }
 
 .active {
+  transition: background-color 1s ease-out;
   background-color: var(--active);
 }
 
@@ -185,7 +186,7 @@ nav li a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  overflow: hidden;
 }
 
 #contact-section-heading {
