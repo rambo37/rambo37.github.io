@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', 'Oxygen', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  font-family: "Segoe UI", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans",
     sans-serif;
 }
 
@@ -110,6 +110,7 @@ nav li a {
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px;
+  margin-bottom: 20px;
 }
 
 .skill-icon {
@@ -162,7 +163,6 @@ nav li a {
   flex-wrap: wrap;
 }
 
-
 #see-more-button {
   background-color: var(--nav);
   border: none;
@@ -181,7 +181,7 @@ nav li a {
 }
 
 .contact-section {
-  background-color: var(--light-background);  
+  background-color: var(--light-background);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -255,7 +255,6 @@ li a svg {
   .skills-grid {
     gap: 60px;
   }
-
 }
 
 @media screen and (max-width: 700px) {
@@ -332,5 +331,41 @@ li a svg {
 
   .skills-grid {
     gap: 40px;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .about-section-left-side {
+    margin-top: 30vh;
+  }
+
+  .about-section-right-side {
+    margin-top: 30vh;
+  }
+
+  .contact-section ul {
+    margin-top: 150px;
+  }
+
+  .move-up {
+    transform: translateY(-100px);
+  }
+
+  .move-down {
+    transform: translateY(100px);
+  }
+}
+
+@media screen and (max-height: 300px) {
+  .contact-section ul {
+    margin-top: 100px;
+  }
+
+  .move-up {
+    transform: translateY(-50px);
+  }
+
+  .move-down {
+    transform: translateY(50px);
   }
 }
