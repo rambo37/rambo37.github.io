@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/rambo37.github.io/static/css/main.959f1b10.css",
+    "main.js": "/rambo37.github.io/static/js/main.4d95c3eb.js",
+    "static/js/787.eef0f175.chunk.js": "/rambo37.github.io/static/js/787.eef0f175.chunk.js",
+    "static/media/CodingBat.png": "/rambo37.github.io/static/media/CodingBat.30018ca44807d2d95bb6.png",
+    "static/media/INS-CW.png": "/rambo37.github.io/static/media/INS-CW.8797a16db7e63008ca8b.png",
+    "static/media/SDV-CW.png": "/rambo37.github.io/static/media/SDV-CW.7067d7f3f0fa0eafe622.png",
+    "static/media/PDA-Simulator.png": "/rambo37.github.io/static/media/PDA-Simulator.33fc6208c362e77a96d7.png",
+    "static/media/mongoDB.svg": "/rambo37.github.io/static/media/mongoDB.ac1feddf352d5377a41efc97b5d03aaa.svg",
+    "static/media/jQuery.svg": "/rambo37.github.io/static/media/jQuery.99f9d24fdd6a3a9bb9fc70183f32d624.svg",
+    "static/media/mySQL.svg": "/rambo37.github.io/static/media/mySQL.32cb8c3715e2582a7a287c0c4d89abe0.svg",
+    "static/media/react.svg": "/rambo37.github.io/static/media/react.20f7e6fbc6d417c57551552d18cb91f6.svg",
+    "static/media/java.svg": "/rambo37.github.io/static/media/java.e6812956b0edcdf5529bba540e052bf1.svg",
+    "static/media/node.svg": "/rambo37.github.io/static/media/node.eed4f833a2c11dcecdb04586fc55c6de.svg",
+    "static/media/scala.svg": "/rambo37.github.io/static/media/scala.46608677f2011a3fed07328a5c0ed8c2.svg",
+    "static/media/javaScript.svg": "/rambo37.github.io/static/media/javaScript.ae9f93344d79726e256d5318f45479a1.svg",
+    "static/media/aws.svg": "/rambo37.github.io/static/media/aws.cafd7be52c502189bd1f3000df5c8fc8.svg",
+    "static/media/typeScript.svg": "/rambo37.github.io/static/media/typeScript.c26190fbee62a9b0403f1c88aa8085a2.svg",
+    "static/media/css3.svg": "/rambo37.github.io/static/media/css3.1e311a769945f1e8f0abb15a20b3f917.svg",
+    "static/media/git.svg": "/rambo37.github.io/static/media/git.b1a328617460744da29cd68e80427a29.svg",
+    "index.html": "/rambo37.github.io/index.html",
+    "static/media/html5.svg": "/rambo37.github.io/static/media/html5.156c862bd828f9758ce0ed235e0b7e6b.svg",
+    "main.959f1b10.css.map": "/rambo37.github.io/static/css/main.959f1b10.css.map",
+    "main.4d95c3eb.js.map": "/rambo37.github.io/static/js/main.4d95c3eb.js.map",
+    "787.eef0f175.chunk.js.map": "/rambo37.github.io/static/js/787.eef0f175.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.959f1b10.css",
+    "static/js/main.4d95c3eb.js"
+  ]
+}
