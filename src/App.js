@@ -137,7 +137,9 @@ function App() {
     initialiseObservers(options);
 
     window.addEventListener("resize", () => {
+      const nav = document.getElementById("nav")
       console.log("height after resize:", window.innerHeight)
+      console.log("nav.getClientRects:", nav.getClientRects())
 
       document.getElementById("contact").style.height = `${
         window.innerHeight - navHeight
