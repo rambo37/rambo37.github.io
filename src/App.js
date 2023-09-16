@@ -116,43 +116,33 @@ function App() {
       .getElementById("nav")
       .getBoundingClientRect().height;
 
-    document.getElementById("contact").style.height = `${
-      window.innerHeight - navHeight
-    }px`;
+    // lvh so that the largest possible viewport height on mobile is used
+    // in the calculation. This is necessary since the address bar on mobile
+    // browsers appears/disappears sometimes upon scrolling
+    const height = "calc(100lvh - " + navHeight + "px)";
+    document.getElementById("contact").style.height = height;
 
-    console.log("initial height:", window.innerHeight)
-
-    // the margin ensures we only consider intersections that occur just underneath the nav bar
+    // the margin ensures we only consider intersections that occur just 
+    // underneath the nav bar
     const options = {
       threshold: [0],
       rootMargin:
-        -(navHeight + 1) +
+        -navHeight +
         "px 0px " +
         -(window.innerHeight - navHeight - 1) +
         "px 0px",
     };
-
-    console.log("original rootMargin:", options.rootMargin)
-
     initialiseObservers(options);
 
     window.addEventListener("resize", () => {
-      const nav = document.getElementById("nav")
-      console.log("height after resize:", window.innerHeight)
-      console.log("nav.getClientRects:", nav.getClientRects())
-
-      document.getElementById("contact").style.height = `${
-        window.innerHeight - navHeight
-      }px`;
-
-      // Need to reset the observers to work with the new window height on window resize
+      // Need to reset the observers to work with the new window height on 
+      // window resize
       options.rootMargin =
-        -(navHeight + 1) +
+        -navHeight +
         "px 0px " +
         -(window.innerHeight - navHeight - 1) +
         "px 0px";
 
-      console.log("new rootMargin:", options.rootMargin)
       initialiseObservers(options);
     });
   }, []);
@@ -183,6 +173,7 @@ function App() {
     if (entries[0].isIntersecting) {
       resetNav();
       setProjectsClass("active");
+      setContactLinksTransition("move-down");
     }
   };
 
@@ -191,8 +182,6 @@ function App() {
       resetNav();
       setContactClass("active");
       setContactLinksTransition("move-up");
-    } else {
-      setContactLinksTransition("move-down");
     }
   };
 
