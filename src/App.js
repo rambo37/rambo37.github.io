@@ -120,6 +120,8 @@ function App() {
       window.innerHeight - navHeight
     }px`;
 
+    console.log("initial height:", window.innerHeight)
+
     // the margin ensures we only consider intersections that occur just underneath the nav bar
     const options = {
       threshold: [0],
@@ -130,9 +132,13 @@ function App() {
         "px 0px",
     };
 
+    console.log("original rootMargin:", options.rootMargin)
+
     initialiseObservers(options);
 
     window.addEventListener("resize", () => {
+      console.log("height after resize:", window.innerHeight)
+
       document.getElementById("contact").style.height = `${
         window.innerHeight - navHeight
       }px`;
@@ -143,6 +149,8 @@ function App() {
         "px 0px " +
         -(window.innerHeight - navHeight - 1) +
         "px 0px";
+
+      console.log("new rootMargin:", options.rootMargin)
       initialiseObservers(options);
     });
   }, []);
