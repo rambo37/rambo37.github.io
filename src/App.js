@@ -122,7 +122,7 @@ function App() {
     const height = "calc(100lvh - " + navHeight + "px)";
     document.getElementById("contact").style.height = height;
 
-    // the margin ensures we only consider intersections that occur just 
+    // the margin ensures we only consider intersections that occur just
     // underneath the nav bar
     const options = {
       threshold: [0],
@@ -135,17 +135,30 @@ function App() {
     initialiseObservers(options);
 
     window.addEventListener("resize", () => {
-      // Need to reset the observers to work with the new window height on 
+      // Need to get the navHeight again as the nav may have resized as a
+      // result of the window resizing
+      const navHeight = document
+        .getElementById("nav")
+        .getBoundingClientRect().height;
+
+      // Need to reset the observers to work with the new window height on
       // window resize
       options.rootMargin =
         -navHeight +
         "px 0px " +
         -(window.innerHeight - navHeight - 1) +
         "px 0px";
-
+      disableObservers();
       initialiseObservers(options);
     });
   }, []);
+
+  // Stop the previous observers from firing
+  function disableObservers() {
+    aboutObserver.unobserve(document.getElementById("about"));
+    projectsObserver.unobserve(document.getElementById("projects"));
+    contactObserver.unobserve(document.getElementById("contact"));
+  }
 
   function initialiseObservers(options) {
     aboutObserver = new IntersectionObserver(aboutCallback, options);
@@ -163,6 +176,7 @@ function App() {
   }
 
   const aboutCallback = (entries) => {
+    console.log("about intersecting: ", entries[0].isIntersecting);
     if (entries[0].isIntersecting) {
       resetNav();
       setAboutClass("active");
@@ -170,6 +184,7 @@ function App() {
   };
 
   const projectsCallback = (entries) => {
+    console.log("project intersecting: ", entries[0].isIntersecting);
     if (entries[0].isIntersecting) {
       resetNav();
       setProjectsClass("active");
@@ -178,6 +193,7 @@ function App() {
   };
 
   const contactCallback = (entries) => {
+    console.log("contact intersecting: ", entries[0].isIntersecting);
     if (entries[0].isIntersecting) {
       resetNav();
       setContactClass("active");
