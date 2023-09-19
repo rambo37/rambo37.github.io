@@ -217,7 +217,7 @@ function App() {
       .getBoundingClientRect().height;
 
     window.scrollTo({
-      top: section.getBoundingClientRect().top + window.pageYOffset - navHeight,
+      top: Math.ceil(section.getBoundingClientRect().top + window.pageYOffset - navHeight),
       behavior: "smooth",
     });
   }
