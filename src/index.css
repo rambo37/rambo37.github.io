@@ -32,10 +32,6 @@ ul {
   display: flex;
 }
 
-nav ul li a:hover {
-  background-color: #2196fd4d;
-}
-
 .active {
   transition: background-color 1s ease-out;
   background-color: var(--active);
@@ -334,12 +330,18 @@ li a svg {
   }
 }
 
-@media screen and (max-height: 550px) {
+@media screen and (max-height: 550px) and (min-width: 1000px) {
   .about-section-left-side {
     margin-top: 30vh;
   }
 
   .about-section-right-side {
+    margin-top: 30vh;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .about-section-left-side {
     margin-top: 30vh;
   }
 
