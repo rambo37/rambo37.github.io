@@ -141,6 +141,11 @@ function App() {
         .getElementById("nav")
         .getBoundingClientRect().height;
 
+      // Recalculate the correct size for the contact section as the nav may
+      // have been resized
+      const height = "calc(100lvh - " + navHeight + "px)";
+      document.getElementById("contact").style.height = height;
+
       // Need to reset the observers to work with the new window height on
       // window resize
       options.rootMargin =
