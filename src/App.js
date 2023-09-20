@@ -216,10 +216,14 @@ function App() {
       .getElementById("nav")
       .getBoundingClientRect().height;
 
-    window.scrollTo({
-      top: Math.ceil(section.getBoundingClientRect().top + window.pageYOffset - navHeight),
-      behavior: "smooth",
-    });
+    // This small delay is needed to prevent an issue with the scroll on Chrome
+    // for mobile devices in landscape mode with the address bar visible
+    setTimeout(() => {
+      window.scrollTo({
+        top: Math.ceil(section.getBoundingClientRect().top + window.pageYOffset - navHeight),
+        behavior: "smooth",
+      });
+    }, 100);
   }
 
   return (
