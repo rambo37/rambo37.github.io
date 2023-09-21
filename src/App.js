@@ -179,8 +179,14 @@ function App() {
 
     // Need to reset the observers to work with the new window height on
     // window resize
-    options.rootMargin =
-      -navHeight + "px 0px " + -(window.innerHeight - navHeight - 1) + "px 0px";
+    const options = {
+      threshold: [0],
+      rootMargin:
+        -navHeight +
+        "px 0px " +
+        -(window.innerHeight - navHeight - 1) +
+        "px 0px",
+    };
     disableObservers();
     initialiseObservers(options);
   }
