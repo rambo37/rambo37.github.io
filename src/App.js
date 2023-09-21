@@ -134,35 +134,62 @@ function App() {
     };
     initialiseObservers(options);
 
-    window.addEventListener("resize", () => {
-      // Need to get the navHeight again as the nav may have resized as a
-      // result of the window resizing
-      const navHeight = document
-        .getElementById("nav")
-        .getBoundingClientRect().height;
+    console.log(navigator.userAgent);
+    const userAgent = navigator.userAgent.toLowerCase();
 
-      // Recalculate the correct size for the contact section as the nav may
-      // have been resized
-      const height = "calc(100lvh - " + navHeight + "px)";
-      document.getElementById("contact").style.height = height;
-
-      // Need to reset the observers to work with the new window height on
-      // window resize
-      options.rootMargin =
-        -navHeight +
-        "px 0px " +
-        -(window.innerHeight - navHeight - 1) +
-        "px 0px";
-      disableObservers();
-      initialiseObservers(options);
-    });
+    // Firefox on mobile requires special treatment to ensure the nav bar
+    // updates correctly on scroll
+    if (
+      userAgent.indexOf("mobile") != -1 &&
+      userAgent.indexOf("firefox") != -1
+    ) {
+      window.screen.orientation.addEventListener("change", (event) => {
+        // A small delay is needed so the window innerHeight updates before
+        // this code executes
+        setTimeout(() => {
+          console.log(
+            "window.innerHeight after orientation change: ",
+            window.innerHeight
+          );
+          handleWindowResize();
+        }, 100);
+      });
+    } else {
+      window.addEventListener("resize", () => {
+        console.log(
+          "window resize event fired, new window height: ",
+          window.innerHeight
+        );
+        handleWindowResize();
+      });
+    }
   }, []);
+
+  function handleWindowResize() {
+    // Need to get the navHeight again as the nav may have resized as a
+    // result of the window resizing
+    const navHeight = document
+      .getElementById("nav")
+      .getBoundingClientRect().height;
+
+    // Recalculate the correct size for the contact section as the nav may
+    // have been resized
+    const height = "calc(100lvh - " + navHeight + "px)";
+    document.getElementById("contact").style.height = height;
+
+    // Need to reset the observers to work with the new window height on
+    // window resize
+    options.rootMargin =
+      -navHeight + "px 0px " + -(window.innerHeight - navHeight - 1) + "px 0px";
+    disableObservers();
+    initialiseObservers(options);
+  }
 
   // Stop the previous observers from firing
   function disableObservers() {
-    aboutObserver.unobserve(document.getElementById("about"));
-    projectsObserver.unobserve(document.getElementById("projects"));
-    contactObserver.unobserve(document.getElementById("contact"));
+    aboutObserver.disconnect();
+    projectsObserver.disconnect();
+    contactObserver.disconnect();
   }
 
   function initialiseObservers(options) {
@@ -220,7 +247,9 @@ function App() {
     // for mobile devices in landscape mode with the address bar visible
     setTimeout(() => {
       window.scrollTo({
-        top: Math.ceil(section.getBoundingClientRect().top + window.pageYOffset - navHeight),
+        top: Math.ceil(
+          section.getBoundingClientRect().top + window.pageYOffset - navHeight
+        ),
         behavior: "smooth",
       });
     }, 100);
