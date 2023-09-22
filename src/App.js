@@ -111,39 +111,22 @@ function App() {
   let projectsObserver;
   let contactObserver;
 
+  // The options for the intersection observer objects. The rootMargin property
+  // is set later, once the navHeight is known (after the initial render)
+  const options = {
+    threshold: [0],
+  };
+
   useEffect(() => {
-    const navHeight = document
-      .getElementById("nav")
-      .getBoundingClientRect().height;
-
-    // lvh so that the largest possible viewport height on mobile is used
-    // in the calculation. This is necessary since the address bar on mobile
-    // browsers appears/disappears sometimes upon scrolling
-    const height = "calc(100lvh - " + navHeight + "px)";
-    document.getElementById("contact").style.height = height;
-
-    // the margin ensures we only consider intersections that occur just
-    // underneath the nav bar
-    const options = {
-      threshold: [0],
-      rootMargin:
-        -navHeight +
-        "px 0px " +
-        -(window.innerHeight - navHeight - 1) +
-        "px 0px",
-    };
-    initialiseObservers(options);
-
-    console.log(navigator.userAgent);
-    const userAgent = navigator.userAgent.toLowerCase();
+    // Call handleWindowResize after the initial render to initialise the 
+    // observers and the contact section's height
+    handleWindowResize();
 
     // Firefox on mobile requires special treatment to ensure the nav bar
-    // updates correctly on scroll
-    if (
-      userAgent.indexOf("mobile") != -1 &&
-      userAgent.indexOf("firefox") != -1
-    ) {
-      window.screen.orientation.addEventListener("change", (event) => {
+    // updates correctly on scroll - the resize listener attached to the
+    // window object does not work properly on Firefox mobile
+    if (isFirefoxMobile()) {
+      window.screen.orientation.addEventListener("change", () => {
         // A small delay is needed so the window innerHeight updates before
         // this code executes
         setTimeout(() => {
@@ -152,7 +135,7 @@ function App() {
             window.innerHeight
           );
           handleWindowResize();
-        }, 100);
+        }, 50);
       });
     } else {
       window.addEventListener("resize", () => {
@@ -165,37 +148,51 @@ function App() {
     }
   }, []);
 
+  function getNavHeight() {
+    return document.getElementById("nav").getBoundingClientRect().height;
+  }
+
+  function setContactSectionHeight(navHeight) {
+    const height = "calc(100vh - " + navHeight + "px)";
+    document.getElementById("contact").style.height = height;
+  }
+
+  function setOptionsRootMargin(navHeight) {
+    // the margin ensures we only consider intersections that occur just
+    // underneath the nav bar
+    options.rootMargin =
+      -navHeight + "px 0px " + -(window.innerHeight - navHeight - 1) + "px 0px";
+  }
+
+  function isFirefoxMobile() {
+    console.log(navigator.userAgent);
+    const userAgent = navigator.userAgent.toLowerCase();
+    return (
+      userAgent.indexOf("mobile") !== -1 && userAgent.indexOf("firefox") !== -1
+    );
+  }
+
   function handleWindowResize() {
     // Need to get the navHeight again as the nav may have resized as a
     // result of the window resizing
-    const navHeight = document
-      .getElementById("nav")
-      .getBoundingClientRect().height;
+    const navHeight = getNavHeight();
 
     // Recalculate the correct size for the contact section as the nav may
     // have been resized
-    const height = "calc(100lvh - " + navHeight + "px)";
-    document.getElementById("contact").style.height = height;
+    setContactSectionHeight(navHeight);
 
     // Need to reset the observers to work with the new window height on
     // window resize
-    const options = {
-      threshold: [0],
-      rootMargin:
-        -navHeight +
-        "px 0px " +
-        -(window.innerHeight - navHeight - 1) +
-        "px 0px",
-    };
     disableObservers();
+    setOptionsRootMargin(navHeight);
     initialiseObservers(options);
   }
 
   // Stop the previous observers from firing
   function disableObservers() {
-    aboutObserver.disconnect();
-    projectsObserver.disconnect();
-    contactObserver.disconnect();
+    if (aboutObserver) aboutObserver.disconnect();
+    if (projectsObserver) projectsObserver.disconnect();
+    if (contactObserver) contactObserver.disconnect();
   }
 
   function initialiseObservers(options) {
@@ -245,9 +242,7 @@ function App() {
     window.history.pushState({}, null, e.target.hash);
 
     const section = document.getElementById(sectionName);
-    const navHeight = document
-      .getElementById("nav")
-      .getBoundingClientRect().height;
+    const navHeight = getNavHeight();
 
     // This small delay is needed to prevent an issue with the scroll on Chrome
     // for mobile devices in landscape mode with the address bar visible
