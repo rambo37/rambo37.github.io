@@ -36,6 +36,24 @@
   height: auto;
 }
 
+@media screen and (max-width: 1200px) {
+  .project-card {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .project-card {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .project-card {
+    width: 60%;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .project-card {
     width: 80%;
