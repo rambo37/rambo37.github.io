@@ -231,7 +231,13 @@ function App() {
   function scrollToSection(e) {
     e.preventDefault();
     const sectionName = e.target.hash.substring(1);
-    window.history.pushState({}, null, e.target.hash);
+    const currentURL = window.location.href;
+    const currentHashPortion = currentURL.substring(
+      currentURL.indexOf("#") + 1
+    );
+    if (currentHashPortion !== sectionName) {
+      window.history.pushState({}, null, e.target.hash);
+    }
 
     const section = document.getElementById(sectionName);
     const navHeight = getNavHeight();
