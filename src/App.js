@@ -115,6 +115,12 @@ function App() {
   let projectsObserver;
   let contactObserver;
 
+  // These heights refer to the window height for mobile devices with the
+  // address bar hidden in portrait and landscape modes, respectively. They are
+  // needed to ensure the IntersectionObservers work properly on Firefox mobile
+  let portraitHeight;
+  let landscapeHeight;
+
   // The options for the intersection observer objects. The rootMargin property
   // is set later, once the navHeight is known (after the initial render)
   const options = {
@@ -122,6 +128,8 @@ function App() {
   };
 
   useEffect(() => {
+    // Compute the address bar height on initial render
+    const addressBarHeight = window.outerHeight - window.innerHeight;
     // Call handleWindowResize after the initial render to initialise the
     // observers and the contact section's height
     handleWindowResize();
@@ -134,6 +142,9 @@ function App() {
         // A small delay is needed so the window innerHeight updates before
         // this code executes
         setTimeout(() => {
+          // If either height is not yet set, attempt to set them before
+          // updating the IntersectionObservers with handleWindowResize
+          if (!landscapeHeight || !portraitHeight) setHeights(addressBarHeight);
           handleWindowResize();
         }, 50);
       });
@@ -144,8 +155,23 @@ function App() {
     }
   }, []);
 
-  function getNavHeight() {
-    return document.getElementById("nav").getBoundingClientRect().height;
+  function setHeights(addressBarHeight) {
+    // If the address bar is hidden, make sure to deduct its size from
+    // the window.innerHeight
+    const addressBarHidden = window.outerHeight === window.innerHeight;
+    if (isInLandscapeMode()) {
+      landscapeHeight = addressBarHidden
+        ? window.innerHeight - addressBarHeight
+        : window.innerHeight;
+    } else {
+      portraitHeight = addressBarHidden
+        ? window.innerHeight - addressBarHeight
+        : window.innerHeight;
+    }
+  }
+
+  function isInLandscapeMode() {
+    return window.innerWidth > window.innerHeight;
   }
 
   function setContactSectionHeight(navHeight) {
@@ -154,10 +180,21 @@ function App() {
   }
 
   function setOptionsRootMargin(navHeight) {
+    let height = window.innerHeight;
+    // We need to use the height when the address bar is visible if on Firefox
+    // mobile for the observers to work (even when the address bar is hidden)
+    if (isFirefoxMobile()) {
+      if (isInLandscapeMode() && landscapeHeight) height = landscapeHeight;
+      if (!isInLandscapeMode() && portraitHeight) height = portraitHeight;
+    }
     // the margin ensures we only consider intersections that occur just
     // underneath the nav bar
     options.rootMargin =
-      -navHeight + "px 0px " + -(window.innerHeight - navHeight - 1) + "px 0px";
+      -navHeight + "px 0px " + -(height - navHeight - 1) + "px 0px";
+  }
+
+  function getNavHeight() {
+    return document.getElementById("nav").getBoundingClientRect().height;
   }
 
   function isFirefoxMobile() {
