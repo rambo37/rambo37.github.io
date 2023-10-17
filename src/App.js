@@ -25,7 +25,7 @@ import { ReactComponent as Phone } from "./assets/icons/contact-links/phone.svg"
 const projects = [
   {
     title: "PDA-Simulator",
-    url: "https://github.com/rambo37/PDA-Simulator",
+    url: "https://rambo37.github.io/PDA-Simulator-Web/",
     image: pda,
     altText: "Screenshot of the PDA-Simulator project.",
   },
