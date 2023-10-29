@@ -4,6 +4,7 @@ import ins from "./assets/projects/INS-CW.png";
 import sdv from "./assets/projects/SDV-CW.png";
 import pda from "./assets/projects/PDA-Simulator.png";
 import bat from "./assets/projects/CodingBat.png";
+import min from "./assets/projects/Minesweeper.png";
 import { ReactComponent as Java } from "./assets/icons/skills/java.svg";
 import { ReactComponent as Scala } from "./assets/icons/skills/scala.svg";
 import { ReactComponent as Node } from "./assets/icons/skills/node.svg";
@@ -46,6 +47,12 @@ const projects = [
     url: "https://github.com/rambo37/CodingBat-Solutions",
     image: bat,
     altText: "Screenshot of the CodingBat website.",
+  },
+  {
+    title: "Minesweeper",
+    url: "https://rambo37.github.io/minesweeper/",
+    image: min,
+    altText: "Screenshot of the Minesweeper project.",
   },
 ];
 
