@@ -56,10 +56,10 @@ const projects = [
     altText: "Screenshot of the Minesweeper project.",
   },
   {
-    title: "Sudoku",
-    url: "https://github.com/rambo37/Sudoku",
+    title: "Sudoku-Solver",
+    url: "https://github.com/rambo37/Sudoku-Solver",
     image: sud,
-    altText: "Screenshot of the Sudoku project.",
+    altText: "Screenshot of the Sudoku-Solver project.",
   },
 ];
 
