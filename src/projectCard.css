@@ -5,16 +5,23 @@
   border-radius: 20px;
   margin: 20px;
   text-decoration: none;
-  transition: transform 0.5s;
   box-shadow: inset 0px 0px 0px 10px var(--light-blue);
-  transition: all 0.4s;
+  transition: box-shadow 0.4s, opacity 1.5s;
+}
+
+.project-card.hidden {
+  opacity: 0;
+}
+
+.project-card.show {
+  opacity: 1;
 }
 
 .project-card:hover {
   box-shadow: inset 0px 0px 0px 10px var(--active);
 }
 
-.project-card .title-div {
+.project-card > .title-div {
   background-color: var(--light-blue);
   padding-top: 10px;
   padding-bottom: 10px;
@@ -26,7 +33,7 @@
   transition: all 0.4s;
 }
 
-.project-card:hover .title-div {
+.project-card:hover > .title-div {
   background-color: var(--active);
   color: white;
 }

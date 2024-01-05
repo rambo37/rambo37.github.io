@@ -123,6 +123,7 @@ function App() {
   const [projectsClass, setProjectsClass] = useState("");
   const [contactClass, setContactClass] = useState("");
   const [contactLinksTransition, setContactLinksTransition] = useState("");
+  const [showProjects, setShowProjects] = useState(false);
 
   // IntersectionObservers, one for each section
   let aboutObserver;
@@ -268,6 +269,7 @@ function App() {
       resetNav();
       setProjectsClass("active");
       setContactLinksTransition("move-down");
+      if (!showProjects) setShowProjects(true);
     }
   };
 
@@ -381,11 +383,13 @@ function App() {
         <div className="projects-grid">
           {projects.map((project, index) => (
             <ProjectCard
-              key={`project${index}`}
+              key={project.title}
               title={project.title}
               url={project.url}
               img={project.image}
               altText={project.altText}
+              show={showProjects}
+              index={index}
             />
           ))}
         </div>
