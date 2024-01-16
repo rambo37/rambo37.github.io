@@ -11,6 +11,7 @@
 
 .project-card.hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 .project-card.show {
