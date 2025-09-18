@@ -2,51 +2,23 @@
   "name": "dev-portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "homepage": "https://rambo37.github.io/",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "@babel/traverse": ">=7.23.2",
-    "nth-check": ">=2.0.1",
-    "postcss": ">=8.4.31",
-    "@adobe/css-tools": ">=4.3.1"
+    "react-dom": "^18.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.3",
     "gh-pages": "^6.0.0",
-    "@babel/traverse": ">=7.23.2",
-    "nth-check": ">=2.0.1",
-    "postcss": ">=8.4.31",
-    "@adobe/css-tools": ">=4.3.1"
+    "vite": "^7.1.6",
+    "vite-plugin-svgr": "^4.5.0"
   }
 }
