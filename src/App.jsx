@@ -13,12 +13,14 @@ import MongoDB from "./assets/icons/skills/mongoDB.svg?react";
 import MySQL from "./assets/icons/skills/mySQL.svg?react";
 import HTML5 from "./assets/icons/skills/html5.svg?react";
 import CSS3 from "./assets/icons/skills/css3.svg?react";
+import Tailwind from "./assets/icons/skills/tailwind.svg?react";
 import JavaScript from "./assets/icons/skills/javaScript.svg?react";
 import TypeScript from "./assets/icons/skills/typeScript.svg?react";
 import React from "./assets/icons/skills/react.svg?react";
 import JQuery from "./assets/icons/skills/jQuery.svg?react";
 import AWS from "./assets/icons/skills/aws.svg?react";
 import Git from "./assets/icons/skills/git.svg?react";
+import Docker from "./assets/icons/skills/docker.svg?react";
 import GitHub from "./assets/icons/contact-links/gitHub.svg?react";
 import LinkedIn from "./assets/icons/contact-links/linkedIn.svg?react";
 import Email from "./assets/icons/contact-links/email.svg?react";
@@ -73,6 +75,14 @@ const skills = [
     icon: <Scala />,
   },
   {
+    name: "JavaScript",
+    icon: <JavaScript />,
+  },
+  {
+    name: "TypeScript",
+    icon: <TypeScript />,
+  },
+  {
     name: "Node",
     icon: <Node />,
   },
@@ -93,12 +103,8 @@ const skills = [
     icon: <CSS3 />,
   },
   {
-    name: "JavaScript",
-    icon: <JavaScript />,
-  },
-  {
-    name: "TypeScript",
-    icon: <TypeScript />,
+    name: "Tailwind",
+    icon: <Tailwind />,
   },
   {
     name: "React",
@@ -115,6 +121,10 @@ const skills = [
   {
     name: "Git",
     icon: <Git />,
+  },
+  {
+    name: "Docker",
+    icon: <Docker />,
   },
 ];
 
@@ -361,9 +371,7 @@ function App() {
           <h3>Skills and experience</h3>
           <p>
             Here are the programming languages, libraries and other technologies
-            I am currently comfortable working with. As a recent graduate, I
-            know that I have much to learn, and as such, this list will continue
-            to evolve.
+            I am currently comfortable working with.
           </p>
           <div className="skills-grid">
             {skills.map((skill, index) => (
